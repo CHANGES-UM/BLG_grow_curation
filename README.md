@@ -1,2 +1,4 @@
 # BLG_grow_curation
-data cleaning from the bluegill grow card workflow
+bluegill grow card data cleaning
+
+This repository contains code used for cleaning and combining data from the bluegill grow workflow that was transcribe via volunteers on the Zooniverse platform.  
