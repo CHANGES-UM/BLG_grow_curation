@@ -1,0 +1,177 @@
+---
+title:  "Matching catalogued data"
+output:
+  word_document: default
+  pdf_document: default
+latex_engine: xelatex
+urlcolor: blue
+---
+
+**Description:** This tutorial describes matching Institute of Fisheries Research lake observations and fish collection events with catalogued museum data from the Global Biodiversity Information Facility (GBIF).
+
+---
+# Part 1: Load libraries and data  
+
+This example uses lake summary data (summary_card_data.csv) that contains unique identifiers for a lake (new_key), the lake name, county, and dates when the sampling was done. This information can be used to match lake data with specimen that were preserved from these lakes. This dataset also includes environmental variables for the lake, such as lake area and depth, temperature, and shoreline development. 
+
+
+```{r}
+#### load libraries #### 
+library(dplyr) #library for data wrangling 
+library(stringr) #library for extracting data 
+library(tidyr)
+library(ggplot2) #library for graphs
+
+#### load summary card data #### 
+summ_dat<-read.csv("summary_card_data.csv") 
+
+
+```
+
+As an example, we also downloaded bluegill specimen from GBIF, which includes all specimen of bluegill that were submitted to the University of Michigan Museum of Zoology database. We selected fields that we thought would help us to match including recorded by, dates, state, county, latitude/longitude, and locality, which includes the lake name. The preparations column contains the number of individuals in the collection, so we had to separate this number into its own column that we called "num_individuals". 
+Then we filtered the museum records to select only observations in Michigan because this is where our data was collected. 
+
+
+```{r}
+#read in bluegill records in the UMMZ from GBIF and select only Michigan records recorded by IFR 
+#preparations column contains # of individuals in a lot 
+museum_dat<-read.csv("blg_UMMZ_GBIF.csv") %>% 
+  select(gbifID, identifier, basisOfRecord, occurrenceID, catalogNumber, preparations, fieldNumber, 
+         eventDate, year, month, day, stateProvince, county, decimalLatitude, decimalLongitude, locality, 
+        recordedBy ) %>% 
+  mutate(num_individuals = as.numeric(str_extract(preparations, "(?<=EtOH - )\\d+")))%>% #extract number of individuals from the preparations column, where ?<= is a positive look-behind from the pattern "EtOH - " and \\d+ pulls out the digit
+  filter(stateProvince == "Michigan") %>% 
+  mutate(year2 = str_extract(fieldNumber, "[^-]+"), 
+         year2 = as.numeric(str_extract(year2, "[[:digit:]]+")) ) %>% #pull the year from the field number 
+  mutate(year3=ifelse(year2 >= 19 & year2 <= 96, paste0("19",year2), NA)) %>%  #add 19 infront of the year 
+  mutate(year = as.integer(ifelse(is.na(year), year3, year))) %>% #if the year is missing then add the new year from fieldNumber
+  filter(year >= 1915 & year <= 1995) # filter to match the years for the summary cards 
+```
+
+We get 485 observations from GBIF if we select only samples from Michigan between the year 1915-1995.
+
+# Part 2: Match lake summary cards to museum records 
+
+In order to match these two datasets, we need to create a new column that includes only the lake name from the locality column and do some other standardizing. We make both the locality column and the county column uppercase to reduce differences in the way a lake name/county name is written as well as remove apostrophes. Then we extract the word before lake or pond into a new column, which is the lake name.  
+
+```{r}
+museum_dat<-museum_dat%>% 
+mutate(locality = toupper(locality), #make locality uppercase so that names are standard 
+         county = toupper(county), #make county uppercase so that names are standard 
+         locality = gsub("'",'',locality), #strip apostrophes so that names are standard
+       locality = gsub(")" ,'',locality),  #strip parenthesis so that names are standard
+       locality = gsub("L\\.",'LAKE',locality)) %>% #replace L. with Lake 
+  mutate(lakename = str_extract(locality, regex("\\b\\w+\\b\\s(?=LAKE)|\\b\\w+\\b\\s(?=POND)"))) %>%  #extract the word right before lake or pond
+  mutate(lakename = trimws(lakename, which = c("both"))) %>% #remove white space around the lake name 
+ mutate(lakename = ifelse(gbifID == 1889129462, "STCLAIR", lakename), #several that didn't pull the correct name 
+        lakename = ifelse(gbifID == 1888996419, "FIVE", lakename),
+        lakename = ifelse(lakename == "BEESE", "BAWBEESE", lakename),
+        lakename = ifelse(lakename == "DEVIL", "DEVILS", lakename),
+        lakename = ifelse(lakename == "FIRST", "STHELENS", lakename),
+         lakename = ifelse(lakename == "INTERMEDIATE", "CENTRAL", lakename),
+         lakename = ifelse(gbifID == 1889017451, "CHAINOFS", lakename),
+         lakename = ifelse(gbifID ==1889003005, "DEVILSWASHBASIN", lakename), 
+        lakename = ifelse(lakename == "PAW", "PAWPAW", lakename),       
+        lakename = ifelse(lakename == "SELKIRK", "SELKIRKNORTH", lakename), 
+        lakename = ifelse(gbifID ==1889079575, "FIRSTSISTER", lakename),
+        lakename = ifelse(gbifID ==1889007643, "THIRDSISTER", lakename),
+        lakename = ifelse(lakename == "STAR", "STARBIG", lakename), 
+        lakename = ifelse(gbifID ==1888977161, "TWINLITTLE", lakename), 
+        lakename = ifelse(gbifID ==1888977053, "TWINLITTLE", lakename)
+        
+ ) 
+
+```
+
+We then match the museum and lake summary information by the county, lake name, and the year that the sample was taken.  This ensures that the samples were taken from the correct lake in the same year. If the year is left blank in the GBIF data or cards or if the lake names don't match up exactly then we wont get a match. 
+
+```{r}
+#### matching #### 
+#* match by lake name and county and year ####
+matches<-inner_join(museum_dat, summ_dat, by=c("county", "lakename", "year"= "begin_date_year")) %>% 
+  filter(subject_id != 58643135) #remove duplicate card 
+
+n_distinct(matches$lakename, matches$county) # how many distinct lakes ?
+
+```
+
+We get 60 museum records for 27 different lakes that match historical cards with data. 
+
+# Part 3: Summary of lakes and museum records 
+We can summarize the data and make some simple figures to investigate the information that we have for these lakes.  
+
+We can summarize the number of individuals from the museum records.
+
+```{r}
+#summary
+matches %>%
+  summarise(
+    mean=mean(num_individuals),
+    sd=sd(num_individuals)
+  )
+
+#histogram 
+hist(matches$num_individuals, breaks = 10, 
+     main = paste("number of individuals"),
+       xlab = 'number of individuals')
+
+hist(matches$year, 
+     main = paste("year of sample"),
+       xlab = 'year')
+
+
+
+```
+
+We can look at the lake attributes of the lakes that we have specimen for. 
+
+```{r}
+#summary table
+matches %>%
+  summarise(
+    area_mean=mean(lake_area_ha, na.rm = TRUE),
+    area_sd=sd(lake_area_ha,  na.rm = TRUE),
+    depth_mean=mean(max_depth_min_m, na.rm = TRUE),
+    depth_sd=sd(max_depth_min_m,  na.rm = TRUE),
+    temp_mean=mean(temp_surface_min_c, na.rm = TRUE),
+    temp_sd=sd(temp_surface_min_c,  na.rm = TRUE),
+    
+  )
+
+#histograms 
+hist(matches$lake_area_ha, breaks = 10, 
+     main = paste("lake area"),
+       xlab = 'lake area')
+hist(matches$max_depth_min_m, breaks = 10, 
+     main = paste("lake depth"),
+       xlab = 'lake depth')
+hist(matches$temp_surface_min_c, breaks = 10, 
+     main = paste("temperature"),
+       xlab = 'temperature')
+
+```
+We can make maps of the lakes that matched 
+```{r}
+#select one point per lake 
+lake_matches<-matches%>%
+  distinct(lakename, county, .keep_all = TRUE)
+#get the Michigan basemap
+MI_basemap<-map_data("state") %>%
+  subset(region %in% c("michigan")) # select michigan 
+p<-ggplot(data = MI_basemap) + 
+  geom_polygon(aes(x = long, y = lat, group = group), fill = "white", color = "black") + #this fill MI white and outline is black
+  coord_fixed(1.3) 
+
+# lake locations in MI
+p+ geom_point(data=lake_matches, aes(x = decimalLongitude, y = decimalLatitude, alpha = 0.1 ) ) + 
+  theme_bw() + # black and white theme for the background 
+  theme(legend.position = "none") #remove legend 
+
+# we can color the points by an attribute, like the number of individuals in the museum collection 
+p+ geom_point(data=matches, aes(x = decimalLongitude, y = decimalLatitude, colour = c(num_individuals))) + 
+  labs(color="number individuals")+   #changes the labels on the legend
+  theme_bw()
+
+
+```
+
