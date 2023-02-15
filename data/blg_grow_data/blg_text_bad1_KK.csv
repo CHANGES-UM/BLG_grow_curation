@@ -1,0 +1,198 @@
+subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.consensus_text,type,column_name,data,text,units1,units
+58642823,T56,[['2']],1,1,2,Text,10th row Number of Fish ,2,NA,NA,NA
+58642823,T46,[['4.9']],1,1,4.9,Text,8th row Mean Length ,4.9,NA,NA,NA
+58642823,T50,[['6']],1,1,6,Text,9th row Number of Fish ,6,NA,NA,NA
+58642823,T52,[['7.0']],1,1,7,Text,9th row Mean Length ,7,NA,NA,NA
+58642823,T58,[['7.4']],1,1,7.4,Text,10th row Mean Length ,7.4,NA,NA,NA
+58642823,T44,[['24']],1,1,24,Text,8th row Number of Fish ,24,NA,NA,NA
+58642823,T45,[['2.8-6.9']],1,1,2.8-6.9,Text,8th row Length Range ,2.8-6.9,NA,NA,NA
+58642823,T51,[['5.9-8.0']],1,1,5.9-8.0,Text,9th row Length Range ,5.9-8.0,NA,NA,NA
+58642823,T57,[['6.6-8.1']],1,1,6.6-8.1,Text,10th row Length Range ,6.6-8.1,NA,NA,NA
+58642824,T56,[['3']],1,1,3,Text,10th row Number of Fish ,3,NA,NA,NA
+58642824,T44,[['4']],1,1,4,Text,8th row Number of Fish ,4,NA,NA,NA
+58642824,T34,[['5.0']],1,1,5,Text,6th row Mean Length ,5,NA,NA,NA
+58642824,T40,[['7.7']],1,1,7.7,Text,7th row Mean Length ,7.7,NA,NA,NA
+58642824,T46,[['8.0']],1,1,8,Text,8th row Mean Length ,8,NA,NA,NA
+58642824,T52,[['9.2']],1,1,9.2,Text,9th row Mean Length ,9.2,NA,NA,NA
+58642824,T58,[['10.1']],1,1,10.1,Text,10th row Mean Length ,10.1,NA,NA,NA
+58642824,T50,[['12']],1,1,12,Text,9th row Number of Fish ,12,NA,NA,NA
+58642824,T38,[['23']],1,1,23,Text,7th row Number of Fish ,23,NA,NA,NA
+58642824,T32,[['26']],1,1,26,Text,6th row Number of Fish ,26,NA,NA,NA
+58642824,T33,[['2.8-6.9']],1,1,2.8-6.9,Text,6th row Length Range ,2.8-6.9,NA,NA,NA
+58642824,T39,[['5.9-8.4']],1,1,5.9-8.4,Text,7th row Length Range ,5.9-8.4,NA,NA,NA
+58642824,T45,[['6.6-8.9']],1,1,6.6-8.9,Text,8th row Length Range ,6.6-8.9,NA,NA,NA
+58642824,T51,[['8.2-9.9']],1,1,8.2-9.9,Text,9th row Length Range ,8.2-9.9,NA,NA,NA
+58642824,T57,[['9.7-10.4']],1,1,9.7-10.4,Text,10th row Length Range ,9.7-10.4,NA,NA,NA
+58746081,T38,[['3']],1,1,3,Text,7th row Number of Fish ,3,NA,NA,NA
+58746081,T28,[['5.2']],1,1,5.2,Text,5th row Mean Length ,5.2,NA,NA,NA
+58746081,T34,[['5.9']],1,1,5.9,Text,6th row Mean Length ,5.9,NA,NA,NA
+58746081,T40,[['6.2']],1,1,6.2,Text,7th row Mean Length ,6.2,NA,NA,NA
+58746081,T26,[['10']],1,1,10,Text,5th row Number of Fish ,10,NA,NA,NA
+58746081,T32,[['22']],1,1,22,Text,6th row Number of Fish ,22,NA,NA,NA
+58746081,T27,[['5.0-5.5']],1,1,5.0-5.5,Text,5th row Length Range ,5.0-5.5,NA,NA,NA
+58746081,T33,[['5.4-6.5']],1,1,5.4-6.5,Text,6th row Length Range ,5.4-6.5,NA,NA,NA
+58746081,T39,[['5.7-6.5']],1,1,5.7-6.5,Text,7th row Length Range ,5.7-6.5,NA,NA,NA
+58746191,T38,[['1']],1,1,1,Text,7th row Number of Fish ,1,NA,NA,NA
+58746191,T39,[['9.6']],1,1,9.6,Text,7th row Length Range ,9.6,NA,NA,NA
+58746191,T40,[['9.6']],1,1,9.6,Text,7th row Mean Length ,9.6,NA,NA,NA
+58746227,T8,[['1']],1,1,1,Text,Second row Number of Fish ,1,NA,NA,NA
+58746227,T32,[['2']],1,1,2,Text,6th row Number of Fish ,2,NA,NA,NA
+58746227,T4,[['4.1']],1,1,4.1,Text,First row Mean Length ,4.1,NA,NA,NA
+58746227,T26,[['5']],1,1,5,Text,5th row Number of Fish ,5,NA,NA,NA
+58746227,T9,[['5.3']],1,1,5.3,Text,Second row Length Range ,5.3,NA,NA,NA
+58746227,T10,[['5.3']],1,1,5.3,Text,Second row Mean Length ,5.3,NA,NA,NA
+58746227,T16,[['6.0']],1,1,6,Text,Third row Mean Length ,6,NA,NA,NA
+58746227,T22,[['6.9']],1,1,6.9,Text,Fourth row Mean Length ,6.9,NA,NA,NA
+58746227,T28,[['7.4']],1,1,7.4,Text,5th row Mean Length ,7.4,NA,NA,NA
+58746227,T34,[['7.9']],1,1,7.9,Text,6th row Mean Length ,7.9,NA,NA,NA
+58746227,T20,[['9']],1,1,9,Text,Fourth row Number of Fish ,9,NA,NA,NA
+58746227,T2,[['14']],1,1,14,Text,First row Number of Fish ,14,NA,NA,NA
+58746227,T14,[['22']],1,1,22,Text,Third row Number of Fish ,22,NA,NA,NA
+58746227,T3,[['3.4-4.7']],1,1,3.4-4.7,Text,First row Length Range ,3.4-4.7,NA,NA,NA
+58746227,T15,[['5.5-6.8']],1,1,5.5-6.8,Text,Third row Length Range ,5.5-6.8,NA,NA,NA
+58746227,T21,[['6.2-7.2']],1,1,6.2-7.2,Text,Fourth row Length Range ,6.2-7.2,NA,NA,NA
+58746227,T27,[['6.7-8.0']],1,1,6.7-8.0,Text,5th row Length Range ,6.7-8.0,NA,NA,NA
+58746227,T33,[['7.7-8.1']],1,1,7.7-8.1,Text,6th row Length Range ,7.7-8.1,NA,NA,NA
+58746392,T2,[['3']],1,1,3,Text,First row Number of Fish ,3,NA,NA,NA
+58746392,T4,[['6.7']],1,1,6.7,Text,First row Mean Length ,6.7,NA,NA,NA
+58746392,T3,[['6.5-1.8']],1,1,6.5-1.8,Text,First row Length Range ,6.5-1.8,NA,NA,NA
+58746485,T2,[['3']],1,1,3,Text,First row Number of Fish ,3,NA,NA,NA
+58746485,T4,[['5.4']],1,1,5.4,Text,First row Mean Length ,5.4,NA,NA,NA
+58746485,T3,[['5.1-5.9']],1,1,5.1-5.9,Text,First row Length Range ,5.1-5.9,NA,NA,NA
+58746486,T26,[['7']],1,1,7,Text,5th row Number of Fish ,7,NA,NA,NA
+58746486,T32,[['7']],1,1,7,Text,6th row Number of Fish ,7,NA,NA,NA
+58746486,T22,[['7.6']],1,1,7.6,Text,Fourth row Mean Length ,7.6,NA,NA,NA
+58746486,T44,[['8']],1,1,8,Text,8th row Number of Fish ,8,NA,NA,NA
+58746486,T28,[['8.1']],1,1,8.1,Text,5th row Mean Length ,8.1,NA,NA,NA
+58746486,T34,[['8.9']],1,1,8.9,Text,6th row Mean Length ,8.9,NA,NA,NA
+58746486,T40,[['9.8']],1,1,9.8,Text,7th row Mean Length ,9.8,NA,NA,NA
+58746486,T38,[['10']],1,1,10,Text,7th row Number of Fish ,10,NA,NA,NA
+58746486,T46,[['10.2']],1,1,10.2,Text,8th row Mean Length ,10.2,NA,NA,NA
+58746486,T20,[['12']],1,1,12,Text,Fourth row Number of Fish ,12,NA,NA,NA
+58746486,T45,[['9.6-10.6']],1,1,9.6-10.6,Text,8th row Length Range ,9.6-10.6,NA,NA,NA
+58746528,T2,[['1']],1,1,1,Text,First row Number of Fish ,1,NA,NA,NA
+58746528,T4,[['7.3']],1,1,7.3,Text,First row Mean Length ,7.3,NA,NA,NA
+58754077,T26,[['1']],1,1,1,Text,5th row Number of Fish ,1,NA,NA,NA
+58754077,T32,[['1']],1,1,1,Text,6th row Number of Fish ,1,NA,NA,NA
+58754077,T14,[['4']],1,1,4,Text,Third row Number of Fish ,4,NA,NA,NA
+58754077,T16,[['6.3']],1,1,6.3,Text,Third row Mean Length ,6.3,NA,NA,NA
+58754077,T22,[['6.7']],1,1,6.7,Text,Fourth row Mean Length ,6.7,NA,NA,NA
+58754077,T27,[['7.1']],1,1,7.1,Text,5th row Length Range ,7.1,NA,NA,NA
+58754077,T28,[['7.1']],1,1,7.1,Text,5th row Mean Length ,7.1,NA,NA,NA
+58754077,T33,[['8.7']],1,1,8.7,Text,6th row Length Range ,8.7,NA,NA,NA
+58754077,T34,[['8.7']],1,1,8.7,Text,6th row Mean Length ,8.7,NA,NA,NA
+58754077,T20,[['10']],1,1,10,Text,Fourth row Number of Fish ,10,NA,NA,NA
+58754077,T15,[['6.0-6.6']],1,1,6.0-6.6,Text,Third row Length Range ,6.0-6.6,NA,NA,NA
+58754077,T21,[['6.1-7.3']],1,1,6.1-7.3,Text,Fourth row Length Range ,6.1-7.3,NA,NA,NA
+58754534,T2,[['1']],1,1,1,Text,First row Number of Fish ,1,NA,NA,NA
+58754534,T8,[['1']],1,1,1,Text,Second row Number of Fish ,1,NA,NA,NA
+58754534,T14,[['1']],1,1,1,Text,Third row Number of Fish ,1,NA,NA,NA
+58754534,T3,[['3.5']],1,1,3.5,Text,First row Length Range ,3.5,NA,NA,NA
+58754534,T4,[['3.5']],1,1,3.5,Text,First row Mean Length ,3.5,NA,NA,NA
+58754534,T9,[['6.9']],1,1,6.9,Text,Second row Length Range ,6.9,NA,NA,NA
+58754534,T10,[['6.9']],1,1,6.9,Text,Second row Mean Length ,6.9,NA,NA,NA
+58754534,T15,[['8.3']],1,1,8.3,Text,Third row Length Range ,8.3,NA,NA,NA
+58754534,T16,[['8.3']],1,1,8.3,Text,Third row Mean Length ,8.3,NA,NA,NA
+58754541,T2,[['4']],1,1,4,Text,First row Number of Fish ,4,NA,NA,NA
+58754541,T26,[['4']],1,1,4,Text,5th row Number of Fish ,4,NA,NA,NA
+58754541,T4,[['5.7']],1,1,5.7,Text,First row Mean Length ,5.7,NA,NA,NA
+58754541,T10,[['6.5']],1,1,6.5,Text,Second row Mean Length ,6.5,NA,NA,NA
+58754541,T16,[['8.5']],1,1,8.5,Text,Third row Mean Length ,8.2,NA,NA,NA
+58754541,T22,[['8.5']],1,1,8.5,Text,Fourth row Mean Length ,8.5,NA,NA,NA
+58754541,T28,[['9.2']],1,1,9.2,Text,5th row Mean Length ,9.2,NA,NA,NA
+58754541,T14,[['10']],1,1,10,Text,Third row Number of Fish ,10,NA,NA,NA
+58754541,T20,[['12']],1,1,12,Text,Fourth row Number of Fish ,12,NA,NA,NA
+58754541,T8,[['23']],1,1,23,Text,Second row Number of Fish ,23,NA,NA,NA
+58754541,T9,[['4.8-7.9']],1,1,4.8-7.9,Text,Second row Length Range ,4.8-7.9,NA,NA,NA
+58754541,T3,[['5.4-6.1']],1,1,5.4-6.1,Text,First row Length Range ,5.4-6.1,NA,NA,NA
+58754541,T15,[['5.7-9.9']],1,1,5.7-9.9,Text,Third row Length Range ,5.7-9.9,NA,NA,NA
+58754541,T21,[['6.1-9.9']],1,1,6.1-9.9,Text,Fourth row Length Range ,6.1-9.9,NA,NA,NA
+58754541,T27,[['8.5-9.6']],1,1,8.5-9.6,Text,5th row Length Range ,8.5-9.6,NA,NA,NA
+58754685,T32,[['1']],1,1,1,Text,6th row Number of Fish ,NA,NA,NA,NA
+58754685,T33,[['8.8']],1,1,8.8,Text,6th row Length Range ,NA,NA,NA,NA
+58754685,T34,[['8.8']],1,1,8.8,Text,6th row Mean Length ,NA,NA,NA,NA
+58755088,T2,[['1']],1,1,1,Text,First row Number of Fish ,1,NA,NA,NA
+58755088,T44,[['1']],1,1,1,Text,8th row Number of Fish ,1,NA,NA,NA
+58755088,T26,[['3']],1,1,3,Text,5th row Number of Fish ,3,NA,NA,NA
+58755088,T38,[['3']],1,1,3,Text,7th row Number of Fish ,3,NA,NA,NA
+58755088,T3,[['3.9']],1,1,3.9,Text,First row Length Range ,3.9,NA,NA,NA
+58755088,T10,[['4.3']],1,1,4.3,Text,Second row Mean Length ,4.3,NA,NA,NA
+58755088,T16,[['5.3']],1,1,5.3,Text,Third row Mean Length ,5.3,NA,NA,NA
+58755088,T22,[['6.1']],1,1,6.1,Text,Fourth row Mean Length ,6.1,NA,NA,NA
+58755088,T28,[['6.9']],1,1,6.9,Text,5th row Mean Length ,6.9,NA,NA,NA
+58755088,T34,[['6.9']],1,1,6.9,Text,6th row Mean Length ,7.3,NA,NA,NA
+58755088,T14,[['8']],1,1,8,Text,Third row Number of Fish ,8,NA,NA,NA
+58755088,T40,[['8.0']],1,1,8,Text,7th row Mean Length ,8,NA,NA,NA
+58755088,T45,[['8.9']],1,1,8.9,Text,8th row Length Range ,8.9,NA,NA,NA
+58755088,T32,[['9']],1,1,9,Text,6th row Number of Fish ,9,NA,NA,NA
+58755088,T8,[['10']],1,1,10,Text,Second row Number of Fish ,10,NA,NA,NA
+58755088,T20,[['10']],1,1,10,Text,Fourth row Number of Fish ,10,NA,NA,NA
+58755088,T9,[['3.8-4.8']],1,1,3.8-4.8,Text,Second row Length Range ,3.8-4.8,NA,NA,NA
+58755088,T15,[['4.9-5.8']],1,1,4.9-5.8,Text,Third row Length Range ,4.9-5.8,NA,NA,NA
+58755088,T21,[['5.8-6.4']],1,1,5.8-6.4,Text,Fourth row Length Range ,5.8-6.4,NA,NA,NA
+58755088,T27,[['6.7-7.0']],1,1,6.7-7.0,Text,5th row Length Range ,6.7-7.0,NA,NA,NA
+58755088,T33,[['6.7-7.0']],1,1,6.7-7.0,Text,6th row Length Range ,6.7-7.9,NA,NA,NA
+58755088,T39,[['7.8-8.2']],1,1,7.8-8.2,Text,7th row Length Range ,7.8-8.2,NA,NA,NA
+58755182,T32,[['2']],1,1,2,Text,6th row Number of Fish ,2,NA,NA,NA
+58755182,T26,[['4']],1,1,4,Text,5th row Number of Fish ,4,NA,NA,NA
+58755182,T38,[['5']],1,1,5,Text,7th row Number of Fish ,5,NA,NA,NA
+58755182,T50,[['6']],1,1,6,Text,9th row Number of Fish ,6,NA,NA,NA
+58755182,T44,[['11']],1,1,11,Text,8th row Number of Fish ,11,NA,NA,NA
+58755182,T34,[['113']],1,1,113,Text,6th row Mean Length ,113,NA,NA,NA
+58755182,T40,[['127']],1,1,127,Text,7th row Mean Length ,127,NA,NA,NA
+58755182,T46,[['145']],1,1,145,Text,8th row Mean Length ,145,NA,NA,NA
+58755182,T52,[['145']],1,1,145,Text,9th row Mean Length ,145,NA,NA,NA
+58755182,T28,[['203']],1,1,203,Text,5th row Mean Length ,203,NA,NA,NA
+58755182,T33,[['100-126']],1,1,100-126,Text,6th row Length Range ,100-126,NA,NA,NA
+58755182,T39,[['113-139']],1,1,113-139,Text,7th row Length Range ,113-139,NA,NA,NA
+58755182,T45,[['130-155']],1,1,130-155,Text,8th row Length Range ,130-155,NA,NA,NA
+58755182,T51,[['140-152']],1,1,140-152,Text,9th row Length Range ,140-152,NA,NA,NA
+58755182,T27,[['192-204']],1,1,192-204,Text,5th row Length Range ,192-204,NA,NA,NA
+59688184,T50,[['1']],1,1,1,Text,9th row Number of Fish ,1,NA,NA,NA
+59688184,T52,[['6.80']],1,1,6.8,Text,9th row Mean Length ,6.8,NA,NA,NA
+59688184,T51,[['6.8-6.8']],1,1,6.8-6.8,Text,9th row Length Range ,6.8-6.8,NA,NA,NA
+59963018,T26,[['1']],1,1,1,Text,5th row Number of Fish ,1,NA,NA,NA
+59963018,T32,[['2']],1,1,2,Text,6th row Number of Fish ,2,NA,NA,NA
+59963018,T27,[['4.2']],1,1,4.2,Text,5th row Length Range ,4.2,NA,NA,NA
+59963018,T28,[['4.2']],1,1,4.2,Text,5th row Mean Length ,4.2,NA,NA,NA
+59963018,T34,[['5.0']],1,1,5,Text,6th row Mean Length ,5,NA,NA,NA
+59963018,T50,[['6']],1,1,6,Text,9th row Number of Fish ,6,NA,NA,NA
+59963018,T40,[['6.2']],1,1,6.2,Text,7th row Mean Length ,6.2,NA,NA,NA
+59963018,T46,[['6.6']],1,1,6.6,Text,8th row Mean Length ,6.6,NA,NA,NA
+59963018,T52,[['6.9']],1,1,6.9,Text,9th row Mean Length ,6.9,NA,NA,NA
+59963018,T38,[['27']],1,1,27,Text,7th row Number of Fish ,27,NA,NA,NA
+59963018,T44,[['28']],1,1,28,Text,8th row Number of Fish ,28,NA,NA,NA
+59963018,T33,[['4.8-5.2']],1,1,4.8-5.2,Text,6th row Length Range ,4.8-5.2,NA,NA,NA
+59963018,T39,[['5.3-7.3']],1,1,5.3-7.3,Text,7th row Length Range ,5.3-7.3,NA,NA,NA
+59963018,T45,[['5.8-7.7']],1,1,5.8-7.7,Text,8th row Length Range ,5.8-7.7,NA,NA,NA
+59963018,T51,[['6.2-7.3']],1,1,6.2-7.3,Text,9th row Length Range ,6.2-7.3,NA,NA,NA
+59964198,T2,[['1']],1,1,1,Text,First row Number of Fish ,1,NA,NA,NA
+59964198,T3,[['1.8']],1,1,1.8,Text,First row Length Range ,1.8,NA,NA,NA
+59964198,T4,[['1.8']],1,1,1.8,Text,First row Mean Length ,1.8,NA,NA,NA
+59964198,T50,[['2']],1,1,2,Text,9th row Number of Fish ,2,NA,NA,NA
+59964198,T10,[['2.8']],1,1,2.8,Text,Second row Mean Length ,2.8,NA,NA,NA
+59964198,T16,[['3.5']],1,1,3.5,Text,Third row Mean Length ,3.5,NA,NA,NA
+59964198,T26,[['4']],1,1,4,Text,5th row Number of Fish ,4,NA,NA,NA
+59964198,T22,[['4.2']],1,1,4.2,Text,Fourth row Mean Length ,4.2,NA,NA,NA
+59964198,T28,[['4.8']],1,1,4.8,Text,5th row Mean Length ,4.8,NA,NA,NA
+59964198,T34,[['5.8']],1,1,5.8,Text,6th row Mean Length ,5.8,NA,NA,NA
+59964198,T40,[['6.3']],1,1,6.3,Text,7th row Mean Length ,6.3,NA,NA,NA
+59964198,T46,[['7.1']],1,1,7.1,Text,8th row Mean Length ,7.1,NA,NA,NA
+59964198,T52,[['7.2']],1,1,7.2,Text,9th row Mean Length ,7.2,NA,NA,NA
+59964198,T8,[['11']],1,1,11,Text,Second row Number of Fish ,11,NA,NA,NA
+59964198,T44,[['11']],1,1,11,Text,8th row Number of Fish ,11,NA,NA,NA
+59964198,T20,[['12']],1,1,12,Text,Fourth row Number of Fish ,12,NA,NA,NA
+59964198,T32,[['13']],1,1,13,Text,6th row Number of Fish ,13,NA,NA,NA
+59964198,T38,[['17']],1,1,17,Text,7th row Number of Fish ,17,NA,NA,NA
+59964198,T14,[['19']],1,1,19,Text,Third row Number of Fish ,19,NA,NA,NA
+59964198,T9,[['2.2-3.6']],1,1,2.2-3.6,Text,Second row Length Range ,2.2-3.6,NA,NA,NA
+59964198,T15,[['2.5-4.3']],1,1,2.5-4.3,Text,Third row Length Range ,2.5-4.3,NA,NA,NA
+59964198,T21,[['4.0-5.0']],1,1,4.0-5.0,Text,Fourth row Length Range ,4.0-5.0,NA,NA,NA
+59964198,T27,[['4.5-5.1']],1,1,4.5-5.1,Text,5th row Length Range ,4.5-5.1,NA,NA,NA
+59964198,T33,[['5.1-7.1']],1,1,5.1-7.1,Text,6th row Length Range ,5.1-7.1,NA,NA,NA
+59964198,T39,[['5.3-7.2']],1,1,5.3-7.2,Text,7th row Length Range ,5.3-7.2,NA,NA,NA
+59964198,T45,[['6.7-7.4']],1,1,6.7-7.4,Text,8th row Length Range ,6.7-7.4,NA,NA,NA
+59964198,T51,[['7.0-7.4']],1,1,7.0-7.4,Text,9th row Length Range ,7.0-7.4,NA,NA,NA
+59964379,T44,[['1']],1,1,1,Text,8th row Number of Fish ,NA,NA,NA,NA
+59964379,T45,[['8.1']],1,1,8.1,Text,8th row Length Range ,NA,NA,NA,NA
+59964379,T46,[['8.1']],1,1,8.1,Text,8th row Mean Length ,8.1,NA,NA,NA

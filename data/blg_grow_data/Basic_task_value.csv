@@ -1,0 +1,14 @@
+task,type,column_name
+T0,Dropdown,begin_date_month
+T1,Dropdown,begin_date_day
+T2,Dropdown,begin_date_year
+T3,Dropdown,end_date_month
+T4,Dropdown,end_date_day
+T5,Dropdown,end_date_year
+T6,Text,other_dates
+T7,Combo,N/A
+T8,Text,T
+T9,Text,R
+T10,Text,S
+T11,Combo,N/A
+T12,Text,collector
