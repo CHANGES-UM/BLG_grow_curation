@@ -1,5 +1,5 @@
 ---
-title:  "Matching catalogued data"
+title:  "Matching survey data with cataloged specimens"
 output:
   word_document: default
   pdf_document: default
@@ -7,69 +7,111 @@ latex_engine: xelatex
 urlcolor: blue
 ---
 
-**Description:** This tutorial describes matching Institute of Fisheries Research lake observations and fish collection events with catalogued museum data from the Global Biodiversity Information Facility (GBIF).
+**Description:** This tutorial describes the process for matching historical environmental and survey data with associated cataloged museum specimens. Here we match historical survey data from the Institute of Fisheries Research with records from the University of Michigan Museum of Zoology which can be accessed through the Global Biodiversity Information Facility (GBIF). In this example we focus on matching bluegill specimens to historical data from the surveys in which they were captured. 
+
+All data sets and code for this tutorial can be downloaded from github, https://github.com/CHANGES-UM/data_curation_examples.
 
 ---
 # Part 1: Load libraries and data  
 
-This example uses lake summary data (summary_card_data.csv) that contains unique identifiers for a lake (new_key), the lake name, county, and dates when the sampling was done. This information can be used to match lake data with specimen that were preserved from these lakes. This dataset also includes environmental variables for the lake, such as lake area and depth, temperature, and shoreline development. 
+## Survey data 
+This tutorial uses lake survey data from summary cards. You can find an example of the original historical data format by looking at this summary card for a survey of Bankers Lake in 1931.
+Front of card
+https://changes-ifr.s3.us-east-2.amazonaws.com/ss1/SUMM/double/a_first/Hillsdale_Bankers_SUMM_005.jpg
+Back of card 
+https://changes-ifr.s3.us-east-2.amazonaws.com/ss1/SUMM/double/a_first/Hillsdale_Bankers_SUMM_006.jpg
 
 
-```{r}
+We first read in the cleaned data file, "summary_card_data.csv", for 2120 summary cards, which were transcribed through Zooniverse workflows and aggregated and cleaned. 
+
+The file contains unique identifiers for a lake (new_key), the lake name, county, and dates when the sampling was done. This information can be used to match lake survey data with specimens that were collected and deposited from these surveys. The summary dataset also includes environmental variables for the lake, such as lake area and depth, temperature, and shoreline development.
+
+
+```{r message=FALSE, warning=FALSE}
 #### load libraries #### 
 library(dplyr) #library for data wrangling 
 library(stringr) #library for extracting data 
-library(tidyr)
+library(tidyr) #library for data munging 
 library(ggplot2) #library for graphs
 
 #### load summary card data #### 
-summ_dat<-read.csv("summary_card_data.csv") 
-
+summ_dat<-read.csv("summary_card_data.csv")
 
 ```
 
-As an example, we also downloaded bluegill specimen from GBIF, which includes all specimen of bluegill that were submitted to the University of Michigan Museum of Zoology database. We selected fields that we thought would help us to match including recorded by, dates, state, county, latitude/longitude, and locality, which includes the lake name. The preparations column contains the number of individuals in the collection, so we had to separate this number into its own column that we called "num_individuals". 
-Then we filtered the museum records to select only observations in Michigan because this is where our data was collected. 
+## GBIF data
+
+GBIF is an infrastructure which aggregates biodiversity data including those from natural history collections. Data from the catalog of the University of Michigan Museum of Zoology can be accessed through GBIF here: https://www.gbif.org/occurrence/search by searching the collection code ‘UMMZ’. We performed and downloaded data from a search for bluegill (Lepomis macrochirus Rafinesque, 1819) records in the United States. 
+
+Download Information:
+DOI: https://doi.org/10.15468/dl.cknu3x 
+Creation Date: 18:38:35 23 August 2022
+Records included: 1900 records from 1 published datasets
+Compressed data size: 166.1 kB
+Download format: simple tab-separated values (TSV)
+Filter used: 
+{
+  "and" : [
+    "Country is United States of America",
+    "InstitutionCode is UMMZ",
+    "TaxonKey is Lepomis macrochirus Rafinesque, 1819"
+  ]
+}
+The citation for this search is:
+GBIF.org (23 August 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.cknu3x
+
+Data from our search are in the file "blg_UMMZ_GBIF.csv"
+
+You can familiarize yourself with the fields in this dataset using this reference:
+Darwin Core Maintenance Group. 2021. Darwin Core Quick Reference Guide. Biodiversity Information Standards (TDWG). https://dwc.tdwg.org/terms/
+
+We begin by loading those data and select fields to match with the summary data including the collector (recordedBy field), dates, state, county, latitude/longitude, and locality, which includes the lake name.  
+
+In the UMMZ fish collection, like many fish collections, the vast majority of specimens are stored in ‘lots’, which are jars of specimens in ethanol that were all the individuals of one species, collected at the same time and place. Each lot has a catalog number (‘catalogNumber’).  The ‘preparations’ field contains the number of individuals in the lot, so we separate this number into its own column, called “num_individuals”. Then we filter the museum records to select only observations in Michigan because this is where our historical survey data was collected.
+
+There are also a number of records which have empty ‘year’ fields for which we know year is embedded within the ‘fieldNumber’ usually as initials of the collector or the county, followed by the last two digits of year, a dash, and a unique collection number. For example, from the survey of Bankers Lake in Hillsdale county in 1931 that we examined earlier, the field number in GBIF is H31-42, but the year is missing from GBIF. We separate the year from the field number and add this to the year field where this was missing. We then filter the years to 1915-1995 to match the historical survey data timeline. 
+
+The output table (museum_dat) has 485 observations from GBIF from Michigan between the years 1915-1995.
 
 
 ```{r}
-#read in bluegill records in the UMMZ from GBIF and select only Michigan records recorded by IFR 
-#preparations column contains # of individuals in a lot 
+#read in bluegill records from GBIF and select only Michigan records recorded by IFR 
+
 museum_dat<-read.csv("blg_UMMZ_GBIF.csv") %>% 
-  select(gbifID, identifier, basisOfRecord, occurrenceID, catalogNumber, preparations, fieldNumber, 
-         eventDate, year, month, day, stateProvince, county, decimalLatitude, decimalLongitude, locality, 
-        recordedBy ) %>% 
-  mutate(num_individuals = as.numeric(str_extract(preparations, "(?<=EtOH - )\\d+")))%>% #extract number of individuals from the preparations column, where ?<= is a positive look-behind from the pattern "EtOH - " and \\d+ pulls out the digit
+    select(gbifID, identifier, basisOfRecord, occurrenceID, catalogNumber, preparations,  fieldNumber, eventDate, year, month, day, stateProvince, county, decimalLatitude,   decimalLongitude, locality, recordedBy ) %>% 
+    mutate(num_individuals = as.numeric(str_extract(preparations, "(?<=EtOH - )\\d+")))%>% #extract number of individuals from the preparations column, where ?<= is a positive look-behind from the pattern "EtOH - " and \\d+ pulls out the digit
   filter(stateProvince == "Michigan") %>% 
   mutate(year2 = str_extract(fieldNumber, "[^-]+"), 
          year2 = as.numeric(str_extract(year2, "[[:digit:]]+")) ) %>% #pull the year from the field number 
-  mutate(year3=ifelse(year2 >= 19 & year2 <= 96, paste0("19",year2), NA)) %>%  #add 19 infront of the year 
+  mutate(year3=ifelse(year2 >= 19 & year2 <= 96, paste0("19",year2), NA)) %>%  #add 19 in front of the year 
   mutate(year = as.integer(ifelse(is.na(year), year3, year))) %>% #if the year is missing then add the new year from fieldNumber
   filter(year >= 1915 & year <= 1995) # filter to match the years for the summary cards 
 ```
 
-We get 485 observations from GBIF if we select only samples from Michigan between the year 1915-1995.
 
 # Part 2: Match lake summary cards to museum records 
 
-In order to match these two datasets, we need to create a new column that includes only the lake name from the locality column and do some other standardizing. We make both the locality column and the county column uppercase to reduce differences in the way a lake name/county name is written as well as remove apostrophes. Then we extract the word before lake or pond into a new column, which is the lake name.  
+In order to match these two datasets, we need to create a new column that includes only the lake name from the locality column and do some other standardizing. We make both the locality column and the county column uppercase to reduce differences in the way a lake name/county name is written as well as remove apostrophes and parentheses. Then we extract the word right before or after lake or pond into a new column, which is the lake name. We can check this table and see that anything with "NA" in our new column is a river or creek site. We also find that this method does not work for some lake names, for example any lake name that is two words (e.g. LAKE ST CLAIR) only selects the first word or lakes like "DEVILS" is sometimes recorded "DEVIL". So, we go through and modify these names accordingly.  
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 museum_dat<-museum_dat%>% 
-mutate(locality = toupper(locality), #make locality uppercase so that names are standard 
-         county = toupper(county), #make county uppercase so that names are standard 
-         locality = gsub("'",'',locality), #strip apostrophes so that names are standard
-       locality = gsub(")" ,'',locality),  #strip parenthesis so that names are standard
+mutate(locality = toupper(locality), #make locality uppercase 
+         county = toupper(county), #make county uppercase 
+         locality = gsub("'",'',locality), #strip apostrophes
+       locality = gsub(")" ,'',locality),  #strip parentheses
        locality = gsub("L\\.",'LAKE',locality)) %>% #replace L. with Lake 
-  mutate(lakename = str_extract(locality, regex("\\b\\w+\\b\\s(?=LAKE)|\\b\\w+\\b\\s(?=POND)"))) %>%  #extract the word right before lake or pond
-  mutate(lakename = trimws(lakename, which = c("both"))) %>% #remove white space around the lake name 
- mutate(lakename = ifelse(gbifID == 1889129462, "STCLAIR", lakename), #several that didn't pull the correct name 
-        lakename = ifelse(gbifID == 1888996419, "FIVE", lakename),
+  mutate(lakename = str_extract(locality,  regex("\\b\\w+\\b\\s(?=LAKE)|\\b\\w+\\b\\s(?=POND)"))) %>%  #extract word before lake or pond
+ mutate(lakename = ifelse(is.na(lakename), 
+                      str_extract(locality,  regex("(?<=\\bLAKE\\s)(\\w+)|(?<=\\bPOND\\s)(\\w+)" ) ),
+                     lakename ) 
+        ) %>% #extract word after lake/pond 
+mutate(lakename = trimws(lakename, which = c("both"))) %>% #remove white space around the lake name 
+ mutate(lakename = ifelse(gbifID == 1889129462, "STCLAIR", lakename), #correct names
+        lakename = ifelse(gbifID == 1888996867 | gbifID == 1888996445 |gbifID == 1888996849 | gbifID == 1888996419, "FIVELAKE", lakename),
         lakename = ifelse(lakename == "BEESE", "BAWBEESE", lakename),
         lakename = ifelse(lakename == "DEVIL", "DEVILS", lakename),
-        lakename = ifelse(lakename == "FIRST", "STHELENS", lakename),
-         lakename = ifelse(lakename == "INTERMEDIATE", "CENTRAL", lakename),
-         lakename = ifelse(gbifID == 1889017451, "CHAINOFS", lakename),
+        lakename = ifelse(lakename == "FIRST", "STHELENS", lakename), #St Helens lake
+         lakename = ifelse(gbifID == 1889017451, "CHAINOFLAKES", lakename),
          lakename = ifelse(gbifID ==1889003005, "DEVILSWASHBASIN", lakename), 
         lakename = ifelse(lakename == "PAW", "PAWPAW", lakename),       
         lakename = ifelse(lakename == "SELKIRK", "SELKIRKNORTH", lakename), 
@@ -83,24 +125,24 @@ mutate(locality = toupper(locality), #make locality uppercase so that names are 
 
 ```
 
-We then match the museum and lake summary information by the county, lake name, and the year that the sample was taken.  This ensures that the samples were taken from the correct lake in the same year. If the year is left blank in the GBIF data or cards or if the lake names don't match up exactly then we wont get a match. 
+We then match the museum and lake summary information by the county, lake name, and the year that the sample was taken. This ensures that the samples were taken from the correct lake in the same year. If the year is left blank in the GBIF data or survey data or if the lake names do not match up exactly then we will not get a match.
 
-```{r}
+
+```{r message=FALSE, warning=FALSE}
 #### matching #### 
 #* match by lake name and county and year ####
 matches<-inner_join(museum_dat, summ_dat, by=c("county", "lakename", "year"= "begin_date_year")) %>% 
-  filter(subject_id != 58643135) #remove duplicate card 
+  filter(subject_id != 59070950) #remove duplicate card 
 
-n_distinct(matches$lakename, matches$county) # how many distinct lakes ?
+n_distinct(matches$lakename, matches$county) # how many distinct lakes?
 
 ```
 
-We get 60 museum records for 27 different lakes that match historical cards with data. 
+Our resulting “matches” output has 98 museum records that match historical cards with data for 45 unique lakes.
 
 # Part 3: Summary of lakes and museum records 
-We can summarize the data and make some simple figures to investigate the information that we have for these lakes.  
-
-We can summarize the number of individuals from the museum records.
+We can summarize these data and make some simple figures to investigate the information that we have for these lakes.  
+First, we summarize the number of fish individuals from the museum records.
 
 ```{r}
 #summary
@@ -115,15 +157,19 @@ hist(matches$num_individuals, breaks = 10,
      main = paste("number of individuals"),
        xlab = 'number of individuals')
 
+```
+
+Second, we summarize the years of sampling.
+
+```{r}
+#histogram
 hist(matches$year, 
      main = paste("year of sample"),
        xlab = 'year')
 
-
-
 ```
 
-We can look at the lake attributes of the lakes that we have specimen for. 
+We can look at the attributes of the lakes for which there are cataloged specimens, including lake surface area (ha), maximum depth (m), and surface temperature (degC) during the survey from the summary card data.
 
 ```{r}
 #summary table
@@ -141,16 +187,18 @@ matches %>%
 #histograms 
 hist(matches$lake_area_ha, breaks = 10, 
      main = paste("lake area"),
-       xlab = 'lake area')
+       xlab = 'lake area (ha)')
 hist(matches$max_depth_min_m, breaks = 10, 
      main = paste("lake depth"),
-       xlab = 'lake depth')
+       xlab = 'lake depth (m)')
 hist(matches$temp_surface_min_c, breaks = 10, 
      main = paste("temperature"),
-       xlab = 'temperature')
+       xlab = 'temperature (degC)')
 
 ```
-We can make maps of the lakes that matched 
+
+Finally, we can map the lakes with survey data and associated cataloged specimens.
+
 ```{r}
 #select one point per lake 
 lake_matches<-matches%>%
@@ -169,6 +217,7 @@ p+ geom_point(data=lake_matches, aes(x = decimalLongitude, y = decimalLatitude, 
 
 # we can color the points by an attribute, like the number of individuals in the museum collection 
 p+ geom_point(data=matches, aes(x = decimalLongitude, y = decimalLatitude, colour = c(num_individuals))) + 
+  scale_color_gradient(low = "blue", high = "yellow") +
   labs(color="number individuals")+   #changes the labels on the legend
   theme_bw()
 
