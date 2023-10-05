@@ -1,5 +1,5 @@
 ---
-title:  "Matching survey data with catalogue specimens"
+title:  "Matching survey data with catalogued specimens"
 output:
   word_document: default
   pdf_document: default
