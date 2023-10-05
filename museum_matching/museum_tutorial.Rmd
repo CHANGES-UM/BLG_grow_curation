@@ -1,5 +1,5 @@
 ---
-title:  "Matching survey data with cataloged specimens"
+title:  "Matching survey data with catalogue specimens"
 output:
   word_document: default
   pdf_document: default
@@ -7,7 +7,7 @@ latex_engine: xelatex
 urlcolor: blue
 ---
 
-**Description:** This tutorial describes the process for matching historical environmental and survey data with associated cataloged museum specimens. Here we match historical survey data from the Institute of Fisheries Research with records from the University of Michigan Museum of Zoology which can be accessed through the Global Biodiversity Information Facility (GBIF). In this example we focus on matching bluegill specimens to historical data from the surveys in which they were captured. 
+**Description:** This tutorial describes the process for matching historical environmental and survey data with associated catalogued museum specimens. Here we match historical survey data from the Institute of Fisheries Research with records from the University of Michigan Museum of Zoology which can be accessed through the Global Biodiversity Information Facility (GBIF). In this example we focus on matching bluegill specimens to historical data from the surveys in which they were captured. 
 
 All data sets and code for this tutorial can be downloaded from github, https://github.com/CHANGES-UM/data_curation_examples.
 
@@ -41,7 +41,7 @@ summ_dat<-read.csv("summary_card_data.csv")
 
 ## GBIF data
 
-GBIF is an infrastructure which aggregates biodiversity data including those from natural history collections. Data from the catalog of the University of Michigan Museum of Zoology can be accessed through GBIF here: https://www.gbif.org/occurrence/search by searching the collection code ‘UMMZ’. We performed and downloaded data from a search for bluegill (Lepomis macrochirus Rafinesque, 1819) records in the United States. 
+GBIF is an infrastructure which aggregates biodiversity data including those from natural history collections. Data from the catalogue of the University of Michigan Museum of Zoology can be accessed through GBIF here: https://www.gbif.org/occurrence/search by searching the collection code ‘UMMZ’. We performed and downloaded data from a search for bluegill (Lepomis macrochirus Rafinesque, 1819) records in the United States. 
 
 Download Information:
 DOI: https://doi.org/10.15468/dl.cknu3x 
@@ -67,7 +67,7 @@ Darwin Core Maintenance Group. 2021. Darwin Core Quick Reference Guide. Biodiver
 
 We begin by loading those data and select fields to match with the summary data including the collector (recordedBy field), dates, state, county, latitude/longitude, and locality, which includes the lake name.  
 
-In the UMMZ fish collection, like many fish collections, the vast majority of specimens are stored in ‘lots’, which are jars of specimens in ethanol that were all the individuals of one species, collected at the same time and place. Each lot has a catalog number (‘catalogNumber’).  The ‘preparations’ field contains the number of individuals in the lot, so we separate this number into its own column, called “num_individuals”. Then we filter the museum records to select only observations in Michigan because this is where our historical survey data was collected.
+In the UMMZ fish collection, like many fish collections, the vast majority of specimens are stored in ‘lots’, which are jars of specimens in ethanol that were all the individuals of one species, collected at the same time and place. Each lot has a catalogue number (‘catalogNumber’).  The ‘preparations’ field contains the number of individuals in the lot, so we separate this number into its own column, called “num_individuals”. Then we filter the museum records to select only observations in Michigan because this is where our historical survey data was collected.
 
 There are also a number of records which have empty ‘year’ fields for which we know year is embedded within the ‘fieldNumber’ usually as initials of the collector or the county, followed by the last two digits of year, a dash, and a unique collection number. For example, from the survey of Bankers Lake in Hillsdale county in 1931 that we examined earlier, the field number in GBIF is H31-42, but the year is missing from GBIF. We separate the year from the field number and add this to the year field where this was missing. We then filter the years to 1915-1995 to match the historical survey data timeline. 
 
@@ -169,7 +169,7 @@ hist(matches$year,
 
 ```
 
-We can look at the attributes of the lakes for which there are cataloged specimens, including lake surface area (ha), maximum depth (m), and surface temperature (degC) during the survey from the summary card data.
+We can look at the attributes of the lakes for which there are catalogued specimens, including lake surface area (ha), maximum depth (m), and surface temperature (degC) during the survey from the summary card data.
 
 ```{r}
 #summary table
@@ -197,7 +197,7 @@ hist(matches$temp_surface_min_c, breaks = 10,
 
 ```
 
-Finally, we can map the lakes with survey data and associated cataloged specimens.
+Finally, we can map the lakes with survey data and associated catalogued specimens.
 
 ```{r}
 #select one point per lake 
