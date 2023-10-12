@@ -7,10 +7,11 @@ latex_engine: xelatex
 urlcolor: blue
 ---
 
-**Description:** This tutorial describes the process of cleaning, aggregating, and standardizing output from Zooniverse transcribed data. There were three Zooniverse workflows that combine to produce a complete set of bluegill data from growth cards. 1) Basic tasks - where volunteers transcribe geographic location, dates of sampling, and collectors which are fields common to all data card types 2) Text tasks - where volunteers transcribe the number of fish and range and mean length of the fish from growth cards 3) Dropdown tasks - where volunteers select the applicable age of fish from a dropdown menu.
+**Description:** This tutorial describes the process of cleaning, aggregating, and standardizing output from Zooniverse transcribed data. The initial data extraction and reduction process from Zooniverse JSON data output was first run in Python using the panoptes-aggregation package, a package specifically made for Zooniverse projects, and is not included in this tutorial (Figure 1). The resulting csv files from this process come from two Zooniverse workflows 1) Basic tasks - where volunteers transcribe geographic location, dates of sampling, and collectors which are fields common to all data card types and 2) Growth tasks - where volunteers transcribe the number of fish, range and mean length of the fish, and fish age from growth cards. We combine several types of tasks from each of these workflows to produce a complete set of bluegill data from growth cards (Figure 1).  
 
-We first clean each of these tasks separately, then aggregate the three datasets, and join them with comments from the volunteer transcribers. Finally, we standardize and quality check units.
+We first clean each of these tasks separately, then aggregate the datasets, and join them with the comments from the volunteer transcribers and the lake names that were matched to a local authority file (Figure 1). Finally, we standardize and quality check units.
 
+![Figure 1: An overview of data curation steps for the Bluegill growth cards.](images/curation_steps.jpg)
 
 ---
 # Part 1: Load libraries and data  
@@ -18,7 +19,8 @@ We have several datasets to load that will help us clean and match the output fr
 
 1) “grow_card_lake_match_13Sep2021.csv” is a file that links historical lakes to the current “new_key”, a lake identifier given to each lake by the Michigan Department of Natural Resources. 
 
-2) “basic_GROW_URLs.csv” is a file that has all of the links to the data card images. Take a look at an example image of a data card to become familiar with the original data format. https://changes-ifr.s3.us-east-2.amazonaws.com/ss1/GROW/single/Alcona_AlconaDam_GROW_Doc0006.jpg
+2) “basic_GROW_URLs.csv” is a file that has all of the links to the data card images. Take a look at an example image of a data card to become familiar with the original data format. 
+![Figure 2: grow card data](images/alconadam_grow.jpg)
 
 3) “Basic_task_value.csv” and “GROW_task_values.csv” are files that have the task code from Zooniverse that can be linked to the actual task name 
 

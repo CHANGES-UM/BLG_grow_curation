@@ -16,10 +16,13 @@ All data sets and code for this tutorial can be downloaded from github, https://
 
 ## Survey data 
 This tutorial uses lake survey data from summary cards. You can find an example of the original historical data format by looking at this summary card for a survey of Bankers Lake in 1931.
-Front of card
-https://changes-ifr.s3.us-east-2.amazonaws.com/ss1/SUMM/double/a_first/Hillsdale_Bankers_SUMM_005.jpg
-Back of card 
-https://changes-ifr.s3.us-east-2.amazonaws.com/ss1/SUMM/double/a_first/Hillsdale_Bankers_SUMM_006.jpg
+
+Front of card: 
+![](images/bankerslake_summ_front.jpeg)
+
+
+Back of card:
+![](images/bankerslake_summ_back.jpeg)
 
 
 We first read in the cleaned data file, "summary_card_data.csv", for 2120 summary cards, which were transcribed through Zooniverse workflows and aggregated and cleaned. 
