@@ -1,7 +1,8 @@
 # data_curation_examples
+[![DOI](https://zenodo.org/badge/435211305.svg)](https://zenodo.org/doi/10.5281/zenodo.13737164)
 
 This repository contains code used for cleaning and combining data from the bluegill grow workflow that was transcribe via volunteers on the Zooniverse platform as well as a tutorial on how to match museum data to historical data. 
-[![DOI](https://zenodo.org/badge/435211305.svg)](https://zenodo.org/doi/10.5281/zenodo.13737164)
+
 
 **The following are in this repository:**  
 **bluegill_grow folder** - contains the code, **blg_tutorial.Rmd**, used for cleaning and joining data from Zooniverse output. This folder also contains a subfolder, **blg_grow_data**, with the data needed for running the Rmarkdown code and a subfolder with the **images** used in the tutorial. 
