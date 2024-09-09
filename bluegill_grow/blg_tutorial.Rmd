@@ -1,5 +1,5 @@
 ---
-title: "Bluegill Growth Card Data Cleaning and Aggregation"
+title: "Supplementary Material 1: Bluegill Growth Card Data Cleaning and Aggregation"
 output:
   word_document: default
   pdf_document: default

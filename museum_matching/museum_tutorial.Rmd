@@ -1,5 +1,5 @@
 ---
-title:  "Matching survey data with catalogued specimens"
+title:  "Supplementary Material 2: Matching survey data with catalogued specimens"
 output:
   word_document: default
   pdf_document: default
@@ -44,7 +44,7 @@ summ_dat<-read.csv("summary_card_data.csv")
 
 ## GBIF data
 
-GBIF is an infrastructure which aggregates biodiversity data including those from natural history collections. Data from the catalogue of the University of Michigan Museum of Zoology can be accessed through GBIF here: https://www.gbif.org/occurrence/search by searching the collection code ‘UMMZ’. We performed and downloaded data from a search for bluegill (Lepomis macrochirus Rafinesque, 1819) records in the United States. 
+GBIF is an infrastructure which aggregates biodiversity data including those from natural history collections. Data from the catalogue of the University of Michigan Museum of Zoology can be accessed through GBIF here: https://www.gbif.org/occurrence/search by searching the institution code ‘UMMZ’. We performed and downloaded data from a search for bluegill (Lepomis macrochirus Rafinesque, 1819) records in the United States. 
 
 Download Information:
 DOI: https://doi.org/10.15468/dl.cknu3x 
